@@ -1,0 +1,8 @@
+# .tfstate files
+.terraform
+*.tfstate*
+*.tfstate
+*.tfstate.*
+
+.env
+private
