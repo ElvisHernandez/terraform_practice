@@ -6,8 +6,9 @@ resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
 resource "aws_cloudfront_distribution" "s3_distribution" {
 
     origin {
-        domain_name = aws_s3_bucket.mds_site.bucket_regional_domain_name
+        domain_name = aws_s3_bucket.default.bucket_regional_domain_name
         origin_id = local.s3_origin_id
+        origin_path = "/master"
 
 
         s3_origin_config {
@@ -25,7 +26,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     #     prefix          = "myprefix"
     # }
 
-    # aliases = ["mysite.example.com", "yoursite.example.com"]
+    aliases = [var.domain]
 
     default_cache_behavior {
         allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -58,6 +59,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
 
     viewer_certificate {
-        cloudfront_default_certificate = true
+        # cloudfront_default_certificate = true
+        acm_certificate_arn = aws_acm_certificate.domain.arn
+        ssl_support_method = "sni-only"
     }
 }

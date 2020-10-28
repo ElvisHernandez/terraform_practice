@@ -1,12 +1,16 @@
 #!/bin/bash
 
-apt-get update
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-apt-get -y install docker-ce docker-ce-cli containerd.io
+sudo fallocate -l 8G /swapfile
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=8388608
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
 
-curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+while [ ! -f /tmp/build.sh ]
+do
+   sleep 10
+   echo "waiting for provisioning files..."
+done
+
+chmod +x /tmp/*.sh
+sudo bash /tmp/build.sh &> /tmp/build.log

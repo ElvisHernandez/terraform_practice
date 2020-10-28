@@ -1,5 +1,5 @@
 
-resource "aws_s3_bucket" "mds_site" {
+resource "aws_s3_bucket" "default" {
     bucket = local.bucket_name
     acl = "public-read"
 
@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "mds_site" {
 }
 
 resource "aws_s3_bucket_policy" "bucket_policy" {
-    bucket = aws_s3_bucket.mds_site.id
+    bucket = aws_s3_bucket.default.id
 
     policy = <<POLICY
 {

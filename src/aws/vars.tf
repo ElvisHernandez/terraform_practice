@@ -4,10 +4,17 @@ locals {
     bucket_name = "test-southpointetech-y-r-u-gae"
 
     pem_file = {
-        key_name = "jamstack_key"
-        key_path = "./private/jamstack_key.pem"
+        key_name = "aws"
+        key_path = "./private/aws.pem"
     }
 }
 
 variable "gitlab_ssh_credentials_path" {}
 variable "remote_gitlab_ssh_config_path" {}
+variable "gitlab_ci_cd_token" {}
+variable "domain" {}
+variable "directus_api_token" {}
+
+output "aws_bucket_name" {
+    value = local.bucket_name
+}

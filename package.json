@@ -1,0 +1,12 @@
+{
+  "name": "southpointe_infrastructure",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ElvisHernandez/terraform_practice.git",
+  "author": "Elvis Hernandez <elvishernandezdev@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "ssh": "ssh -i private/aws.pem ubuntu@bastion.nerdlythinking.com",
+    "generate:token": "./scripts/genDirectusToken.sh"
+  }
+}
