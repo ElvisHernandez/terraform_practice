@@ -4,6 +4,22 @@ data aws_route53_zone "domain" {
     name = var.domain
 }
 
+resource "aws_route53_record" "cloudfront" {
+    depends_on = [
+        aws_cloudfront_distribution.s3_distribution
+    ]
+
+    zone_id = data.aws_route53_zone.domain.zone_id
+    name    = var.domain
+    type    = "A"
+
+    alias {
+        name = aws_cloudfront_distribution.s3_distribution.domain_name
+        zone_id = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
+        evaluate_target_health = false
+    }
+}
+
 resource "aws_route53_record" "bastion" {
     zone_id = data.aws_route53_zone.domain.zone_id
     name = "bastion.${var.domain}"

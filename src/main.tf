@@ -7,6 +7,11 @@ module "aws" {
     remote_gitlab_ssh_config_path = var.remote_gitlab_ssh_config_path
     gitlab_ci_cd_token = var.gitlab_ci_cd_token
     directus_api_token = var.directus_api_token
+
+    nginx_username = var.nginx_username
+    nginx_password = var.nginx_password
+    directus_admin_email = var.directus_admin_email
+    directus_admin_password = var.directus_admin_password
 }
 
 module "gitlab" {

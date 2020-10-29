@@ -20,13 +20,13 @@ docker-compose up -d mysql directus;
 
 sleep 20;
 
-docker-compose run -T --rm directus install --email admin@nerdlythinking.com --password admin;
+docker-compose run -T --rm directus install --email $DIRECTUS_ADMIN_EMAIL --password $DIRECTUS_ADMIN_PASSWORD;
 
 # sleep 20;
 
 TOKEN=$DIRECTUS_API_TOKEN
 
-SQL="UPDATE directus_users SET token = '$TOKEN' WHERE email = 'admin@nerdlythinking.com';";
+SQL="UPDATE directus_users SET token = '$TOKEN' WHERE email = '$DIRECTUS_ADMIN_EMAIL';";
 
 docker-compose exec -T mysql mysql -u directus -D directus -pdirectus -e "$SQL";
 

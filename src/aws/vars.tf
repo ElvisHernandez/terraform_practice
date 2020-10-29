@@ -14,6 +14,10 @@ variable "remote_gitlab_ssh_config_path" {}
 variable "gitlab_ci_cd_token" {}
 variable "domain" {}
 variable "directus_api_token" {}
+variable "nginx_username" {}
+variable "nginx_password" {}
+variable "directus_admin_email" {}
+variable "directus_admin_password" {}
 
 output "aws_bucket_name" {
     value = local.bucket_name

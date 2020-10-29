@@ -5,6 +5,8 @@ resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
 
+    depends_on = [aws_s3_bucket.default]
+
     origin {
         domain_name = aws_s3_bucket.default.bucket_regional_domain_name
         origin_id = local.s3_origin_id

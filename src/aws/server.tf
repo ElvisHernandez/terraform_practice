@@ -62,6 +62,11 @@ resource "null_resource" "init_server" {
 
     provisioner "remote-exec" {
         inline = [
+            "echo \"DOMAIN=${var.domain}\" >> /tmp/.env",
+            "echo \"NGINX_USERNAME=${var.nginx_username}\" >> /tmp/.env",
+            "echo \"NGINX_PASSWORD=${var.nginx_password}\" >> /tmp/.env",
+            "echo \"DIRECTUS_ADMIN_EMAIL=${var.directus_admin_email}\" >> /tmp/.env",
+            "echo \"DIRECTUS_ADMIN_PASSWORD=${var.directus_admin_password}\" >> /tmp/.env",
             "echo \"GITLAB_CI_CD_TOKEN=${var.gitlab_ci_cd_token}\" >> /tmp/.env",
             "echo \"DIRECTUS_API_TOKEN=${var.directus_api_token}\" >> /tmp/.env",
             "echo \"AWS_KEY=${aws_iam_access_key.iam_user_credentials.id}\" >> /tmp/.env",

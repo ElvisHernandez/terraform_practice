@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "ssh": "ssh -i private/aws.pem ubuntu@bastion.nerdlythinking.com",
+    "configure": "./scripts/configure.sh",
     "generate:token": "./scripts/genDirectusToken.sh"
   }
 }

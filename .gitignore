@@ -4,5 +4,7 @@
 *.tfstate
 *.tfstate.*
 
-.env
+
+*.env
+!sample.env
 private
